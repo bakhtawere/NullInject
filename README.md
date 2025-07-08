@@ -92,20 +92,6 @@ python main.py
 
 ---
 
-## GUI Preview
-
-Make sure you've placed a screenshot in:
-```
-C:\Users\HP\Pictures\Screenshots\gui.png
-```
-
-Then, this will display the image on GitHub:
-
-```markdown
-![GUI Screenshot](docs/screenshots/gui.png)
-```
-
----
 
 ## Burp Suite and ZAP Integration (Simulated)
 
