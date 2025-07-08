@@ -1,18 +1,18 @@
-
-
 # NullInject
 
-**NullInject** is a professional-grade payload generation tool built during the Offensive Security Internship at ITSOLERA Pvt Ltd. It is designed to assist penetration testers and security researchers by generating modular, evasion-ready payloads for common web vulnerabilities including Cross-Site Scripting (XSS), SQL Injection (SQLi), and Command Injection.
+**NullInject** is a professional-grade payload generation tool built during the Offensive Security Internship at ITSOLERA Pvt Ltd. It assists penetration testers and security researchers by generating modular, evasion-ready payloads for common web vulnerabilities such as Cross-Site Scripting (XSS), SQL Injection (SQLi), and Command Injection.
+
+---
 
 ## Project Objective
 
-The primary goal of this project is to develop a modular, GUI-based payload generator capable of producing bypass-ready payloads with support for encoding, export, and simulated integration with testing tools such as Burp Suite and OWASP ZAP.
+To develop a modular, GUI-based payload generator capable of producing bypass-ready payloads with support for encoding, exporting, and simulated integration with tools such as Burp Suite and OWASP ZAP.
 
 ---
 
 ## Features
 
-- Modular payload generators for:
+- Modular payload generators:
   - Cross-Site Scripting (Reflected, Stored, DOM-Based)
   - SQL Injection (Error-based, Union-based, Blind)
   - Command Injection (Linux and Windows variants)
@@ -20,9 +20,9 @@ The primary goal of this project is to develop a modular, GUI-based payload gene
   - Base64
   - URL encoding
   - Hexadecimal
-- Export generated payloads to:
+- Export functionality:
   - JSON file
-  - Clipboard
+  - Clipboard copy
 - Simulated integration with:
   - Burp Suite Repeater API
   - OWASP ZAP Scanner
@@ -31,32 +31,30 @@ The primary goal of this project is to develop a modular, GUI-based payload gene
 
 ## Folder Structure
 
+```
 NullInject/
-├── gui/ # Graphical User Interface (Tkinter)
-│ └── gui.py
-├── modules/ # Payload logic for each attack type
-│ ├── xss.py
-│ ├── sqli.py
-│ └── cmdinj.py
-├── utils/ # Supporting logic (encoders, exporters, integrations)
-│ ├── encoder.py
-│ ├── exporter.py
-│ ├── burp_integration.py
-│ └── zap_integration.py
-├── output/ # JSON payload exports
-├── docs/screenshots/ # GUI screenshots
-├── samples/ # Sample payload categories
-│ ├── xss/
-│ ├── sqli/
-│ └── cmd/
-├── main.py # Application entry point
-├── README.md
-├── .gitignore
+├── gui/                  # Graphical User Interface (Tkinter)
+│   └── gui.py
+├── modules/              # Payload generators
+│   ├── xss.py
+│   ├── sqli.py
+│   └── cmdinj.py
+├── utils/                # Encoders, exporters, integrations
+│   ├── encoder.py
+│   ├── exporter.py
+│   ├── burp_integration.py
+│   └── zap_integration.py
+├── output/               # JSON payload exports
+├── docs/screenshots/     # GUI screenshots
+├── samples/              # Sample payloads
+│   ├── xss/
+│   ├── sqli/
+│   └── cmd/
+├── main.py               # Entry point
 ├── requirements.txt
-└── venv/ # Virtual environment (not versioned)
-
-yaml
-Copy code
+├── .gitignore
+└── README.md
+```
 
 ---
 
@@ -65,7 +63,7 @@ Copy code
 ### Prerequisites
 
 - Python 3.8 or higher
-- Linux (Ubuntu/Kali recommended) or Windows with WSL
+- Linux (Ubuntu/Kali recommended) or WSL (for Windows)
 - Git
 
 ### Installation
@@ -82,75 +80,88 @@ source venv/bin/activate   # For Linux/macOS
 
 # Install dependencies
 pip install -r requirements.txt
-Running the Tool
-To launch the GUI:
+```
 
-bash
-Copy code
+---
+
+## Running the Tool
+
+```bash
 python main.py
-Demonstration
-Screenshots are located in docs/screenshots/. Below is an example of the GUI interface.
+```
 
+---
 
+## GUI Preview
 
-Burp Suite and ZAP Integration (Simulated)
-This version of NullInject simulates sending payloads to Burp Suite and OWASP ZAP for testing purposes. These functions are placeholder simulations and do not require either application to be installed.
+Make sure you've placed a screenshot in:
+```
+C:\Users\HP\Pictures\Screenshots\gui.png
+```
 
-To implement real API communication, replace the simulated logic in:
+Then, this will display the image on GitHub:
 
-utils/burp_integration.py
+```markdown
+![GUI Screenshot](docs/screenshots/gui.png)
+```
 
-utils/zap_integration.py
+---
 
-Sample Payloads
-The tool includes standard payloads with variations to evade Web Application Firewalls (WAFs), input filters, and blacklists.
+## Burp Suite and ZAP Integration (Simulated)
 
-Examples include:
+This version includes simulated API calls for:
 
-XSS
+- `utils/burp_integration.py`
+- `utils/zap_integration.py`
+
+These do not require Burp/ZAP to be installed but can be extended for real-world usage.
+
+---
+
+## Sample Payloads
+
+### XSS
+
+```html
 <script>alert(1)</script>
-
 <svg/onload=confirm(1)>
+<iframe srcdoc="<script>alert(1)</script>"></iframe>
+```
 
-javascript:eval(atob("YWxlcnQoMSk="))
+### SQLi
 
-SQLi
+```sql
 ' OR 1=1-- -
-
 ' UNION SELECT username, password FROM users-- -
-
 ' AND 1=CONVERT(int,@@version)-- -
+```
 
-Command Injection
+### Command Injection
+
+```bash
 ; id
-
 && cat /etc/passwd
-
 | net user
-
-Export Options
-Generated payloads can be:
-
-Exported as a .json file (output/payloads.json)
-
-Copied to system clipboard for manual testing
----
-
-##  GUI Preview
-
-![GUI Screenshot](/home/kali/Pictures/gui.png) 
+```
 
 ---
 
-License
-This tool is created as part of a student internship program. It is intended for educational and authorized testing purposes only. Misuse of this tool for unauthorized activities is strictly prohibited.
+## Export Options
 
+- Export payload to a `.json` file in `output/`
+- Copy payload directly to clipboard
 
-Disclaimer
-This project is intended for authorized security research and educational purposes only. The author assumes no responsibility for any misuse or damage caused by this tool.
+---
 
-yaml
-Copy code
+## License
+
+This tool was created as part of a student internship project. It is intended strictly for educational and authorized security testing purposes.
+
+---
+
+## Disclaimer
+
+Unauthorized use of this tool is prohibited. The author is not responsible for any misuse or damage resulting from its usage.
 
 ---
 
